@@ -1,0 +1,9 @@
+{
+  "extends": "eslint-config-rackt",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  }
+}
