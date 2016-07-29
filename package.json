@@ -64,6 +64,7 @@
     "babel-plugin-transform-react-display-name": "^6.4.0",
     "babel-plugin-transform-react-jsx": "^6.4.0",
     "babel-plugin-transform-regenerator": "^6.3.13",
+    "babel-polyfill": "^6.9.1",
     "babel-register": "^6.3.13",
     "codecov": "^1.0.1",
     "cross-env": "^1.0.7",
@@ -79,7 +80,6 @@
     "redux": "^3.0.0",
     "redux-saga": "^0.10.4",
     "rimraf": "^2.5.4",
-    "superagent": "^2.1.0",
     "webpack": "^1.11.0"
   },
   "peerDependencies": {
