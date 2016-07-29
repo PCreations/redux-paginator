@@ -1,6 +1,6 @@
 {
   "name": "redux-paginator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "redux-paginator helps you deal with paginated API by composing your existing reducers",
   "main": "./lib/index.js",
   "scripts": {
