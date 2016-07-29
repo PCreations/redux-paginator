@@ -13,7 +13,8 @@
     "prepublish": "npm run test && npm run clean && npm run build",
     "test": "mocha --compilers js:babel-register --recursive --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
     "test:watch": "npm test -- --watch",
-    "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js"
+    "test:cov": "babel-node ./node_modules/isparta/bin/isparta cover ./node_modules/mocha/bin/_mocha -- --recursive \"src/**/__tests__/*\" --require src/__tests__/setup.js",
+    "test:codecov": "cat ./coverage/coverage.json | ./node_modules/.bin/codecov"
   },
   "repository": {
     "type": "git",
@@ -64,6 +65,7 @@
     "babel-plugin-transform-react-jsx": "^6.4.0",
     "babel-plugin-transform-regenerator": "^6.3.13",
     "babel-register": "^6.3.13",
+    "codecov": "^1.0.1",
     "cross-env": "^1.0.7",
     "es3ify": "^0.2.0",
     "eslint": "^3.1.1",
@@ -71,6 +73,7 @@
     "expect-predicate": "^1.0.0",
     "flux-standard-action": "^0.6.1",
     "glob": "^6.0.4",
+    "isparta": "^4.0.0",
     "lodash.pick": "^4.3.0",
     "mocha": "^2.5.3",
     "redux": "^3.0.0",

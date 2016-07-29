@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+  - "6"
+  - "5"
+  - "4"
+  - "stable"
+
+script:
+  - npm run lint
+  - npm test
+
+after_success:
+  - npm run test:cov
+  - npm run test:codecov
