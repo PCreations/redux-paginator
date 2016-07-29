@@ -4,7 +4,6 @@ import { loadUser, requestStarredPage } from '../actions'
 import User from '../components/User'
 import Repo from '../components/Repo'
 import List from '../components/List'
-import zip from 'lodash/zip'
 import {
     getCurrentPageNumber,
     getAllResults,
@@ -53,7 +52,7 @@ class UserPage extends Component {
       return <h1><i>Loading {login}’s profile...</i></h1>
     }
 
-    const { starredRepos, starredRepoOwners, starredPagination } = this.props
+    const { starredRepos } = this.props
     return (
       <div>
         <User user={user} />
@@ -72,9 +71,7 @@ class UserPage extends Component {
 UserPage.propTypes = {
   login: PropTypes.string.isRequired,
   user: PropTypes.object,
-  starredPagination: PropTypes.object,
   starredRepos: PropTypes.array.isRequired,
-  starredRepoOwners: PropTypes.array.isRequired,
   loadUser: PropTypes.func.isRequired,
   loadStarred: PropTypes.func.isRequired
 }
