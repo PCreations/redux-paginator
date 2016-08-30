@@ -46,7 +46,7 @@ describe('fetch page saga', () => {
 
     next = saga.next({ response, [FROM_CACHE_FLAG]: null })
     expect(next.value)
-      .toEqual(put(receivePage('endpoint', 'name', { id: undefined, fooField: undefined }, 'p', 'id', 'page', 'params', [ 'foo', 'bar' ], 42, true)))
+      .toEqual(put(receivePage('endpoint', 'name', { id: undefined, fooField: undefined }, 'p', 'id', 'page', 'params', [ 'foo', 'bar' ], 42, response, true)))
   })
 
 })
