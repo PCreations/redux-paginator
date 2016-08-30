@@ -29,13 +29,14 @@ describe('actions', () => {
           },
           pageArgName: 'p',
           idKey: 'id',
-          fromCache: false
+          fromCache: false,
         },
         payload: {
           params: 'foo=bar',
           page: 2,
           items: [ 'foo','bar','baz' ],
-          count: 42
+          count: 42,
+          raw: undefined
         }
       })
       .toPass(isFSA)

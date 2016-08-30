@@ -19,7 +19,7 @@ export function *fetchPage(endpoint, name, initialItem, resultsKey, countKey, pa
       results = response[resultsKey]
       count = response[countKey]
     }
-    yield put(receivePage(endpoint, name, initialItem, pageArgName, idKey, page, params, results, count, !(typeof fromCache == 'undefined')))
+    yield put(receivePage(endpoint, name, initialItem, pageArgName, idKey, page, params, results, count, response, !(typeof fromCache == 'undefined')))
   } catch(error) {
     // TODO
   }

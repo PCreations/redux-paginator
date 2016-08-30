@@ -41,6 +41,7 @@ export const receivePage = (
   params,
   items,
   count,
+  raw,
   fromCache = false
 ) => ({
   type: RECEIVE_PAGE,
@@ -56,6 +57,7 @@ export const receivePage = (
     page,
     params,
     items,
-    count
+    count,
+    raw
   }
 })

@@ -154,6 +154,7 @@ describe('items reducer', () => {
         { id: 'bar', fooField: 'barValue' }
       ],
       42,
+      {},
       true
     ))
     expect(state)

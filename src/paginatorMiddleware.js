@@ -47,6 +47,7 @@ const paginatorMiddleware = ({ dispatch }) => next => action => {
               params,
               results,
               count,
+              raw: res,
               !(typeof fromCache == 'undefined')
             ))
           })
