@@ -23,8 +23,8 @@ describe('request page watcher', () => {
     let next = saga.next()
     expect(next.value).toEqual(take(REQUEST_PAGE))
 
-    next = saga.next(requestPage('endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params'))
-    expect(next.value).toEqual(fork(fetchPage, 'endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params'))
+    next = saga.next(requestPage('endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params', { 'Accept': 'application/json' }))
+    expect(next.value).toEqual(fork(fetchPage, 'endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params', { 'Accept': 'application/json' }))
 
     next = saga.next()
     expect(next.value).toEqual(take(REQUEST_PAGE))
@@ -35,18 +35,18 @@ describe('request page watcher', () => {
 describe('fetch page saga', () => {
 
   it('should fetch the page and put the receive page action', () => {
-    const saga = fetchPage('endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params')
+    const saga = fetchPage('endpoint', 'name', { id: undefined, fooField: undefined }, 'resultsKey', 'countKey', 'p', 'id', 'page', 'params', { 'Accept': 'application/json' })
     let response = {
       resultsKey: [ 'foo', 'bar' ],
       countKey: 42
     }
 
     let next = saga.next()
-    expect(next.value).toEqual(call(fetchPageRequest, 'endpoint', 'p', 'page', 'params'))
+    expect(next.value).toEqual(call(fetchPageRequest, 'endpoint', 'p', 'page', 'params', { 'Accept': 'application/json' }))
 
     next = saga.next({ response, [FROM_CACHE_FLAG]: null })
     expect(next.value)
-      .toEqual(put(receivePage('endpoint', 'name', { id: undefined, fooField: undefined }, 'p', 'id', 'page', 'params', [ 'foo', 'bar' ], 42, response, true)))
+      .toEqual(put(receivePage('endpoint', 'name', { id: undefined, fooField: undefined }, 'p', 'id', 'page', 'params', [ 'foo', 'bar' ], 42, response, true, { 'Accept': 'application/json' })))
   })
 
 })

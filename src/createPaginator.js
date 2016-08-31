@@ -20,7 +20,8 @@ export const requestPageActionCreatorForEndpoint = (
   idKey,
   initialItem,
   resultsKey,
-  countKey
+  countKey,
+  headers
 ) =>
   (page, params) => requestPage(
     endpoint,
@@ -31,7 +32,8 @@ export const requestPageActionCreatorForEndpoint = (
     pageArgName,
     idKey,
     page,
-    params
+    params,
+    headers
   )
 
 export const getRequestPageActionCreatorsFor = (
@@ -41,7 +43,8 @@ export const getRequestPageActionCreatorsFor = (
   idKey,
   initialItem,
   resultsKey,
-  countKey
+  countKey,
+  headers
 ) => {
   let actions = {}
   for (let name of names) {
@@ -55,7 +58,8 @@ export const getRequestPageActionCreatorsFor = (
           idKey,
           initialItem,
           resultsKey,
-          countKey
+          countKey,
+          headers
         )
       }
     }
@@ -79,7 +83,8 @@ export const createPaginator = (endpoint, names, {
   resultsKey,
   countKey,
   pageArgName = 'page',
-  idKey = 'id'
+  idKey = 'id',
+  headers = {}
 }) => {
 
   const params = onlyForEndpoint(endpoint, paramsReducer)
@@ -95,7 +100,8 @@ export const createPaginator = (endpoint, names, {
     idKey,
     initialItem,
     resultsKey,
-    countKey
+    countKey,
+    headers
   )
 
   return paginator(itemsReducer, params, pages, currentPages, requestPageActionCreators)

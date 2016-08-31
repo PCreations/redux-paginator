@@ -8,10 +8,10 @@ import {
 } from './agent'
 
 
-export function *fetchPage(endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey, page, params) {
+export function *fetchPage(endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey, page, params, headers) {
   try {
     let results, count
-    const { response, [FROM_CACHE_FLAG]: fromCache } = yield call(fetchPageRequest, endpoint, pageArgName, page, params)
+    const { response, [FROM_CACHE_FLAG]: fromCache } = yield call(fetchPageRequest, endpoint, pageArgName, page, params, headers)
     if (typeof resultsKey == 'undefined') {
       results = response
     }
@@ -27,7 +27,7 @@ export function *fetchPage(endpoint, name, initialItem, resultsKey, countKey, pa
 
 export function *requestPageWatcher() {
   while (true) {  //  eslint-disable-line no-constant-condition
-    const { meta: { endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey }, payload: { page, params } } = yield take(REQUEST_PAGE)
-    yield fork(fetchPage, endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey, page, params)
+    const { meta: { endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey, headers }, payload: { page, params } } = yield take(REQUEST_PAGE)
+    yield fork(fetchPage, endpoint, name, initialItem, resultsKey, countKey, pageArgName, idKey, page, params, headers)
   }
 }

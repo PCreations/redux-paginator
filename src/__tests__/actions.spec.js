@@ -43,7 +43,7 @@ describe('actions', () => {
   })
 
   it('should create request page action', () => {
-    expect(requestPage('some/api/endpoint/', 'name', { id: undefined, fooField: undefined }, 'results', 'count', 'p', 'id', 2, 'foo=bar'))
+    expect(requestPage('some/api/endpoint/', 'name', { id: undefined, fooField: undefined }, 'results', 'count', 'p', 'id', 2, 'foo=bar', { 'Accept': 'application/json' }))
       .toEqual({
         type: REQUEST_PAGE,
         meta: {
@@ -56,7 +56,8 @@ describe('actions', () => {
           resultsKey: 'results',
           countKey: 'count',
           pageArgName: 'p',
-          idKey: 'id'
+          idKey: 'id',
+          headers: { 'Accept': 'application/json' }
         },
         payload: {
           params: 'foo=bar',

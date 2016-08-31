@@ -43,7 +43,7 @@ export const buildSuffix = (pageArgName, page, params) => {
   }, { encode: false }).replace(startString, '')
 }
 
-export const fetchPage = (endpoint, pageArgName, page, params) => {
+export const fetchPage = (endpoint, pageArgName, page, params, headers = {}) => {
   const suffix = buildSuffix(pageArgName, page, params)
   const url = endpoint + suffix
   const hash = hashUrl(url)
@@ -54,6 +54,7 @@ export const fetchPage = (endpoint, pageArgName, page, params) => {
     promise = new Promise((resolve, reject) =>
       agent
         .get(url)
+        .set(headers)
         .end((err, res) => err ? reject(err) : resolve(res))
     )
     _promises[hash] = promise

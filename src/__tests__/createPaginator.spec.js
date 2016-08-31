@@ -80,7 +80,7 @@ describe('requestPageActionCreatorForEndpoint', () => {
 
 describe('getRequestPageActionCreatorsFor', () => {
 
-  it('should create action creators for the given endpoint, pageNameArg and names', () => {
+  it('should create action creators for the given endpoint, pageNameArg, names and headers', () => {
     const actionCreators = getRequestPageActionCreatorsFor(
       'some/api/endpoint/',
       [ 'foo', 'bar' ],
@@ -88,7 +88,8 @@ describe('getRequestPageActionCreatorsFor', () => {
       'id',
       { id: undefined, fooField: undefined },
       'results',
-      'count'
+      'count',
+      { 'Accept': 'application/json' }
     )
     const actionForFoo = actionCreators.foo.requestPage(42, 'foo=bar')
     const actionForBar = actionCreators.bar.requestPage(17, 'bar=foo')
@@ -102,7 +103,8 @@ describe('getRequestPageActionCreatorsFor', () => {
         'p',
         'id',
         42,
-        'foo=bar'
+        'foo=bar',
+        { 'Accept': 'application/json' }
       ))
     expect(actionForBar)
       .toEqual(requestPage(
@@ -114,7 +116,8 @@ describe('getRequestPageActionCreatorsFor', () => {
         'p',
         'id',
         17,
-        'bar=foo'
+        'bar=foo',
+        { 'Accept': 'application/json' }
       ))
   })
 
@@ -128,7 +131,8 @@ describe('createPaginator', () => {
       pageArgName: 'p',
       idKey: 'id_field',
       resultsKey: 'results',
-      countKey: 'count'
+      countKey: 'count',
+      headers: { 'Accept': 'application/json' }
     })
     const action = paginator.foo.requestPage(42, 'foo=bar')
     expect(action)
@@ -141,7 +145,8 @@ describe('createPaginator', () => {
         'p',
         'id_field',
         42,
-        'foo=bar'
+        'foo=bar',
+        { 'Accept': 'application/json' }
       ))
   })
 

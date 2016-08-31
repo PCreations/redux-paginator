@@ -16,7 +16,8 @@ const paginatorMiddleware = ({ dispatch }) => next => action => {
         resultsKey,
         countKey,
         pageArgName,
-        idKey
+        idKey,
+        headers
       },
       payload: {
         page,
@@ -25,7 +26,7 @@ const paginatorMiddleware = ({ dispatch }) => next => action => {
     } = action
     dispatch(dispatch => {
       try {
-        fetchPage(endpoint, pageArgName, page, params)
+        fetchPage(endpoint, pageArgName, page, params, headers)
           .then(res => {
             const { response, [FROM_CACHE_FLAG]: fromCache } = res
             let results, count

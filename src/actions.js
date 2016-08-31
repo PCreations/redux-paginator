@@ -13,7 +13,8 @@ export const requestPage = (
   pageArgName,
   idKey,
   page,
-  params
+  params,
+  headers
 ) => ({
   type: REQUEST_PAGE,
   meta: {
@@ -23,7 +24,8 @@ export const requestPage = (
     resultsKey,
     countKey,
     pageArgName,
-    idKey
+    idKey,
+    headers
   },
   payload: {
     page,
